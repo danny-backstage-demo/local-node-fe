@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: local-test-node-fe
-  description: Node frontend made from local dev
+  description: A cool project
   annotations:
     github.com/project-slug: danny-backstage-demo/local-node-fe
     dev.azure.com/project: Backstage-Demo
