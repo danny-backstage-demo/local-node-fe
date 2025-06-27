@@ -1,0 +1,44 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: local-test-node-fe
+  description: Node frontend made from local dev
+  annotations:
+    github.com/project-slug: danny-backstage-demo/local-node-fe
+    dev.azure.com/project: Backstage-Demo
+    dev.azure.com/build-definition: local-test-node-fe
+    sonarqube.org/project-key: local-test-node-fe
+    grafana/dashboard-selector: "folderTitle == 'Managed Prometheus'"
+    backstage.io/kubernetes-id: local-test-node-fe
+  links:
+    - url: https://github.com/danny-backstage-demo/local-node-fe
+      title: GitHub Repository
+      icon: github
+    - url: https://dev.azure.com/defragovuk/Backstage-Demo
+      title: Azure DevOps Project
+      icon: project
+    - url: https://sonarcloud.io/project/overview?id=local-test-node-fe
+      title: SonarCloud Analysis
+      icon: check
+    - url: https://snyk.io/test/github/DEFRA/local-test-node-fe
+      title: Snyk Analysis
+      icon: policy
+    - url: https://portal.azure.com/defradev.onmicrosoft.com
+      title: Azure Portal - Defra Dev
+      icon: cloud
+    - url: https://portal.azure.com/Defra.onmicrosoft.com
+      title: Azure Portal - Defra
+      icon: cloud
+    - url: https://local-test-node-fe.snd4.adp.defra.gov.uk/
+      title: SND4
+    - url: https://local-test-node-fe.dev1.adp.defra.gov.uk/
+      title: DEV1
+    - url: https://local-test-node-fe.tst1.adp.defra.gov.uk/
+      title: TST1
+    - url: https://local-test-node-fe.pre1.adp.defra.gov.uk/
+      title: PRE1
+spec:
+  type: frontend
+  lifecycle: alpha
+  owner: group:default/ltp-test-1
+  system: system:default/adp-shared-services

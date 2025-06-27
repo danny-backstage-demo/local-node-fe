@@ -1,0 +1,24 @@
+services:
+  ? local-test-node-fe
+  : command: npm run start:watch
+    build:
+      target: development
+    image: local-test-node-fe-development
+    environment:
+      NODE_ENV: test
+    volumes:
+    - ./test-output:/home/node/test-output
+
+  axe:
+    image: defradigital/ffc-axe
+    depends_on:
+      - local-test-node-fe
+    command:
+      - /bin/sh
+      - -c
+      - |
+        sleep 10
+        /scripts/wait ${TEST_ENVIRONMENT_ROOT_URL:-local-test-node-fe:3000} -- axe --dir=test-output -s axe.json --report=test-output --format=junit --exclude ".govuk-skip-link,.govuk-breadcrumbs"  --chrome-options="no-sandbox,disable-setuid-sandbox,disable-dev-shm-usage" --chromedriver-path=/usr/bin/chromedriver --exit  ${TEST_ENVIRONMENT_ROOT_URL:-local-test-node-fe:3000}
+    volumes:
+      - ./test-output/axe:/home/node/test-output
+      - ./scripts:/scripts

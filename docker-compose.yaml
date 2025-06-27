@@ -1,0 +1,10 @@
+services:
+  ? local-test-node-fe
+  : build:
+      context: .
+      target: production
+    image: local-test-node-fe
+    container_name: local-test-node-fe
+    environment:
+      APPINSIGHTS_CLOUDROLE: local-test-node-fe-local
+      APPINSIGHTS_CONNECTIONSTRING: ${APPINSIGHTS_CONNECTIONSTRING}

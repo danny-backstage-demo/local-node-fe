@@ -1,0 +1,19 @@
+services:
+  ? local-test-node-fe
+  : command: npm run start:watch
+    build:
+      target: development
+    image: local-test-node-fe-development
+    environment:
+      NODE_ENV: test
+    volumes:
+      - ./test-output:/home/node/test-output
+
+  zap-baseline-scan:
+    image: softwaresecurityproject/zap-bare:2.14.0
+    command: zap.sh -cmd -quickurl ${TEST_ENVIRONMENT_ROOT_URL:-http://local-test-node-fe:3000} -zapit ${TEST_ENVIRONMENT_ROOT_URL:-http://local-test-node-fe:3000} -configfile config/zap.conf -quickout test-output/zap-report.html -silent -quickprogress
+    depends_on:
+      - local-test-node-fe
+    volumes:
+      - ./test-output:/zap/test-output
+      - ./zap:/zap/config

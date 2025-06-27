@@ -1,0 +1,8 @@
+{{- include "adp-helm-library.deployment" (list . "local-test-node-fe.deployment") -}}
+{{- define "local-test-node-fe.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+      - {{ include "adp-helm-library.container" (list . "local-test-node-fe.container") }}
+{{- end -}}
